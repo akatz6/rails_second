@@ -12,7 +12,7 @@
 	</tr>
 	<% @likes.each do |like|%>
 	<tr>
-		<td><%= link_to like.alias, user_path(@idea.alias)%></td>	
+		<td><%= link_to like.alias, user_path(like.alias)%></td>	
 		<td><%=User.find_by_last_name(like.alias).first_name%></td>	
 	</tr>
 	<%end%>
