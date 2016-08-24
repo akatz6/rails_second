@@ -1,0 +1,41 @@
+<h1>Welcome</h1>
+
+<h3>Register Here</h3>
+
+
+<%= form_for @user do |f| %>
+  <%= f.label :first_name, "Name", :class=>'inline betaLabelTextField' %>:
+  <%= f.text_field :first_name, :class=>'betaTextField'%><br />
+
+  <%= f.label :last_name,  "Alias", :class=>'inline betaLabelTextField' %>:
+  <%= f.text_field :last_name, :class=>'betaTextField' %><br />
+
+  <%= f.label :email %>:
+  <%= f.email_field :email %><br />
+
+  <%= f.label :password %>:
+  <%= f.password_field :password %><br />
+
+  <%= f.label :confirm_password %>:
+  <%= f.password_field :password_confirmation %><br />
+
+
+  <%= f.submit %>
+<% end %>
+
+
+<h3>Login</h3>
+
+<%= form_for @user, :url => sessions_path do |f| %>
+  <%= f.label :email %>:
+  <%= f.email_field :email %><br />
+
+  <%= f.label :password %>:
+  <%= f.password_field :password %><br />
+
+  <%= f.submit "Login" %>
+<% end %>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>

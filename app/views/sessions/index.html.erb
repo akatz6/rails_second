@@ -1,0 +1,30 @@
+<%= link_to "Logout", root_path %>
+
+<h1>Hello <%= @user.first_name%></h1>
+
+<%= form_for @idea do |f| %>
+<%= f.label :comment %>:
+<%= f.text_field :comment %><br />
+
+<%= f.submit %>
+<% end %>
+
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+<% @ideas.each do |idea|%>
+<%= link_to idea.alias, user_path(idea.alias) %>
+<p>Says</p>
+<p><%= idea.comment%></p>
+<% if @user_alias == idea.alias%>
+<%= form_for @user, method: :delete do |f| %>
+<%= f.hidden_field :id, :value => idea.id%>
+<%= f.submit  "Delete" %>
+<% end %>
+<%end%>
+<%= link_to "Like", session_path(idea.id) %>
+<p>Number of Likes</p>
+<%= link_to idea.likes, idea_path(idea.id) %>
+<br>
+<%end%>

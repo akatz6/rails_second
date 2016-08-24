@@ -1,0 +1,19 @@
+<%= link_to "Bright Ideas", sessions_path %>
+<%= link_to "Logout", root_path %>
+<h1><%= link_to @idea.alias, user_path(@idea.alias)%> Says</h1>
+<p><%= @idea.comment%></p>
+
+<p>People that likes your posts</p>
+
+<table>
+	<tr>
+		<th>Alias</th>
+		<th>Name</th>
+	</tr>
+	<% @likes.each do |like|%>
+	<tr>
+		<td><%= link_to like.alias, user_path(@idea.alias)%></td>	
+		<td><%=User.find_by_last_name(like.alias).first_name%></td>	
+	</tr>
+	<%end%>
+</table>
